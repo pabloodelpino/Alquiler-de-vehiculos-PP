@@ -3,45 +3,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Empresa {
+    private ArrayList<Vehiculo> miListaVehiculos;
+    private Map<String, Cliente> mapaClientes;
 
-
-    private ArrayList <Vehiculos> misVehiculos;
-    private Map <String, Cliente> mapaClientes;
-    private ArrayList <Reserva> listaReservas;
 
 
     public Empresa() {
-
-        misVehiculos = new ArrayList<>();
+        miListaVehiculos = new ArrayList<>();
         mapaClientes = new HashMap<>();
-        listaReservas = new ArrayList<>();
     }
 
-    //Vehiculos
-    //Creacion
-    public boolean altaVehiculos(Vehiculos nuevoVehiculo) {
-        if (nuevoVehiculo != null) {
-            if (buscarVehiculo(nuevoVehiculo.getMatricula()) == null) {
-                return misVehiculos.add(nuevoVehiculo);
+
+    //CRUD CLIENTE
+    //Solo nos pide dar de alta
+    public boolean addCliente(Cliente miCliente) {
+        String dni = miCliente.getDni();
+        if (!mapaClientes.containsKey(miCliente.getDni())){
+            mapaClientes.put(dni, miCliente);
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    //CRUD VEHICULO
+    //Solo nos pide dar de alta
+    public boolean addVehiculo(Vehiculo v) {
+        if(v != null) {
+            if(miListaVehiculos == null && buscarVehiculo(v.getMatricula()) == null) {
+                return miListaVehiculos.add(v);
             }
         }
-    return false;
+        return false;
     }
 
-
-
-    //Buscar
-    public Vehiculos buscarVehiculo (String matricula) {
-        for (Vehiculos miVehiculo : misVehiculos) {
-            if ((miVehiculo.getMatricula().equals(matricula))) {
-                return miVehiculo;
+    public Vehiculo buscarVehiculo(String localizador) {
+        for(Vehiculo unPaquete: miListaVehiculos) {
+            if(unPaquete.getMatricula().compareTo(localizador)==0) {
+                return unPaquete;
             }
         }
         return null;
     }
 
-    //Clientes
-
-
-    //Reserva
 }

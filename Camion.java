@@ -1,21 +1,20 @@
-public class Camion extends Vehiculos{
-
-    //Atributos
-    private int carga;
+public class Camion extends Vehiculo{
+    private int cargaMaxima;
     private int longitud;
 
-    public Camion(String matricula, String marca, String modelo, float kms, float precioDia, String tipoMotor, int carga, int longitud) {
-        super(matricula, marca, modelo, kms, precioDia, tipoMotor);
-        this.carga = carga;
+
+    public Camion(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor, int cargaMaxima, int longitud) {
+        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor);
+        this.cargaMaxima = cargaMaxima;
         this.longitud = longitud;
     }
 
-    public int getCarga() {
-        return carga;
+    public int getCargaMaxima() {
+        return cargaMaxima;
     }
 
-    public void setCarga(int carga) {
-        this.carga = carga;
+    public void setCargaMaxima(int cargaMaxima) {
+        this.cargaMaxima = cargaMaxima;
     }
 
     public int getLongitud() {

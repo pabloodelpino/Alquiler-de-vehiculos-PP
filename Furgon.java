@@ -1,30 +1,27 @@
-public class Furgon extends Vehiculos{
-
-    //Atributos
-    private int carga;
-    private int plazas;
+public class Furgon extends Vehiculo{
+    private int cargaMaxima;
+    private int plaza;
 
 
-    public Furgon(String matricula, String marca, String modelo, float kms, float precioDia, String tipoMotor, int carga, int plazas) {
-        super(matricula, marca, modelo, kms, precioDia, tipoMotor);
-        this.carga = carga;
-        this.plazas = plazas;
+    public Furgon(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor, int cargaMaxima, int plaza) {
+        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor);
+        this.cargaMaxima = cargaMaxima;
+        this.plaza = plaza;
     }
 
-
-    public int getCarga() {
-        return carga;
+    public int getCargaMaxima() {
+        return cargaMaxima;
     }
 
-    public void setCarga(int carga) {
-        this.carga = carga;
+    public void setCargaMaxima(int cargaMaxima) {
+        this.cargaMaxima = cargaMaxima;
     }
 
-    public int getPlazas() {
-        return plazas;
+    public int getPlaza() {
+        return plaza;
     }
 
-    public void setPlazas(int plazas) {
-        this.plazas = plazas;
+    public void setPlaza(int plaza) {
+        this.plaza = plaza;
     }
 }

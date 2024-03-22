@@ -1,19 +1,19 @@
 public class Cliente {
 
-    private String nombre;
-    private String apellidos;
-    private String correo;
-    private String telefono;
-    private String dni;
-    private String tarjetaCredito;
+    String nombre;
+    String apellidos;
+    String email;
+    String telefono;
+    String dni;
+    String tarjeta;
 
-    public Cliente(String nombre, String apellidos, String correo, String telefono, String dni, String tarjetaCredito) {
+    public Cliente(String nombre, String apellidos, String email, String telefono, String dni, String tarjeta) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.correo = correo;
+        this.email = email;
         this.telefono = telefono;
         this.dni = dni;
-        this.tarjetaCredito = tarjetaCredito;
+        this.tarjeta = tarjeta;
     }
 
     public String getNombre() {
@@ -32,12 +32,12 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefono() {
@@ -56,11 +56,13 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public String getTarjetaCredito() {
-        return tarjetaCredito;
+    public String getTarjeta() {
+        return tarjeta;
     }
 
-    public void setTarjetaCredito(String tarjetaCredito) {
-        this.tarjetaCredito = tarjetaCredito;
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
+
+
 }
