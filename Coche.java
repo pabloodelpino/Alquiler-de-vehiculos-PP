@@ -5,12 +5,11 @@ public class Coche extends Vehiculo{
     private String tipoCoche;
 
 
-    public Coche(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor, int plazas, int puertas, int volumenMaletero, String tipoCoche) {
-        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor);
+    public Coche(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, TipoMotor tipoMotor, TipoVehiculo tipoVehiculo, int plazas, int puertas, int volumenMaletero, TipoCoche tipoCoche) {
+        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor, tipoVehiculo);
         this.plazas = plazas;
         this.puertas = puertas;
         this.volumenMaletero = volumenMaletero;
-        this.tipoCoche = tipoCoche;
     }
 
     public int getPlazas() {
@@ -44,4 +43,6 @@ public class Coche extends Vehiculo{
     public void setTipoCoche(String tipoCoche) {
         this.tipoCoche = tipoCoche;
     }
+
+
 }

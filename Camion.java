@@ -3,8 +3,8 @@ public class Camion extends Vehiculo{
     private int longitud;
 
 
-    public Camion(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor, int cargaMaxima, int longitud) {
-        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor);
+    public Camion(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, TipoMotor tipoMotor, TipoVehiculo tipoVehiculo, int cargaMaxima, int longitud) {
+        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor, tipoVehiculo);
         this.cargaMaxima = cargaMaxima;
         this.longitud = longitud;
     }

@@ -3,8 +3,8 @@ public class Furgon extends Vehiculo{
     private int plaza;
 
 
-    public Furgon(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor, int cargaMaxima, int plaza) {
-        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor);
+    public Furgon(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, TipoMotor tipoMotor, TipoVehiculo tipoVehiculo, int cargaMaxima, int plaza) {
+        super(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor, tipoVehiculo);
         this.cargaMaxima = cargaMaxima;
         this.plaza = plaza;
     }

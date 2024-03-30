@@ -1,21 +1,27 @@
-public class Vehiculo {
+public abstract class Vehiculo {
 
-   private String matricula;
+    //public static enum TipoMotor {ELECTRICO, HIBRIDO, GASOLINA, DIESEL};
+
+    private String matricula;
    private String modelo;
    private String marca;
    private int kmsRecorridos;
    private double precioPorDia;
-   private String tipoMotor;
+
+   private TipoMotor tipoMotor;
+   private TipoVehiculo tipoVehiculo;
 
 
 
-   public Vehiculo(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, String tipoMotor) {
+
+   public Vehiculo(String matricula, String modelo, String marca, int kmsRecorridos, double precioPorDia, TipoMotor tipoMotor, TipoVehiculo tipoVehiculo) {
        this.matricula = matricula;
        this.modelo = modelo;
        this.marca = marca;
        this.kmsRecorridos = kmsRecorridos;
        this.precioPorDia = precioPorDia;
        this.tipoMotor = tipoMotor;
+
    }
    public String getMatricula() {
        return matricula;
@@ -53,5 +59,7 @@ public class Vehiculo {
        return precioPorDia;
    }
 
-
+    public TipoMotor getTipoMotor() {
+        return tipoMotor;
+    }
 }
