@@ -1,14 +1,13 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
 
 
 
-    public static void main(String[] args) {
-
-        //public  static enum TipoVehiculo {COCHE, FURGON, CAMION};
-
-        //private TipoVehiculo tipoVehiculo;
+    public static void main(String[] args) throws ParseException {
 
         boolean salir = false;
         String teclado;
@@ -50,7 +49,36 @@ public class Main {
 
             } else if(teclado.compareTo("3")==0) {
 
+                System.out.println("Inserte el DNI del cliente");
+                String dni = sc.nextLine();
+                if(miEmpresa.existeCliente(dni)){
+                    System.out.println("Inserte la matricula del Vehiculo");
+                    String matricula = sc.nextLine();
+                    if(miEmpresa.existeVehiculo(matricula)){
 
+                        System.out.println("Inicio del alquiler");
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+                        String inicioAlquiler = sc.nextLine();
+
+                        Date fechaAlquiler = formato.parse(inicioAlquiler);
+
+                        System.out.println("Cuanto va a durar el alquiler");
+                        int diasAlquilado = Integer.parseInt(sc.nextLine());
+
+                        System.out.println("Fecha de la entrega del vehículo:");
+                        String endAlquiler = sc.nextLine();
+                        Date finAlquiler = formato.parse(endAlquiler);
+
+                        miEmpresa.alquilarVehiculo(dni, matricula, fechaAlquiler,diasAlquilado, finAlquiler);
+                        System.out.println("Vehiculo alquilado");
+
+                    } else {
+                        System.out.println("Vehiculo no existe");
+                    }
+
+                } else {
+                    System.out.println("Cliente no existe");
+                }
 
             } else if(teclado.compareTo("4")==0) {
 
@@ -58,7 +86,7 @@ public class Main {
                 System.out.println("b. Furgones");
                 System.out.println("c. Camiones");
                 String menu = sc.nextLine();
-                if (menu.equals("a")){
+                if (menu.equals("a")) {
 
                     System.out.println("Cuantas plazas minimo quieres en tu coche: ");
                     int plazas = Integer.valueOf(sc.nextLine());
@@ -72,22 +100,21 @@ public class Main {
                     int motor = Integer.valueOf(sc.nextLine());
                     TipoMotor tipoMotor = null;
 
-                    if(motor == TipoMotor.ELECTRICO.ordinal()){
+                    if (motor == TipoMotor.ELECTRICO.ordinal()) {
                         tipoMotor = TipoMotor.ELECTRICO;
-                    } else if(motor == TipoMotor.GASOLINA.ordinal()){
+                    } else if (motor == TipoMotor.GASOLINA.ordinal()) {
                         tipoMotor = TipoMotor.GASOLINA;
-                    } else if(motor == TipoMotor.DIESEL.ordinal()){
+                    } else if (motor == TipoMotor.DIESEL.ordinal()) {
                         tipoMotor = TipoMotor.DIESEL;
-                    } else if(motor == TipoMotor.HIBRIDO.ordinal()){
+                    } else if (motor == TipoMotor.HIBRIDO.ordinal()) {
                         tipoMotor = TipoMotor.HIBRIDO;
-                    } else if(motor == TipoMotor.HIBRIDOENCHUFABLE.ordinal()){
+                    } else if (motor == TipoMotor.HIBRIDOENCHUFABLE.ordinal()) {
                         tipoMotor = TipoMotor.HIBRIDOENCHUFABLE;
                     }
 
                     miEmpresa.listarCoche(plazas, tipoMotor);
                     System.out.println("Listado de coches:");
-                    System.out.println(miEmpresa.listarCoche(plazas,tipoMotor));
-
+                    System.out.println(miEmpresa.listarCoche(plazas, tipoMotor));
 
                 } else if (menu.equals("b")) {
 
@@ -107,12 +134,47 @@ public class Main {
                     System.out.println("Logitud máxima para el camión: ");
                     int longitud = Integer.valueOf(sc.nextLine());
 
-                    miEmpresa.listarCamion(cargaMaxima,longitud);
+                    miEmpresa.listarCamion(cargaMaxima, longitud);
                     System.out.println("Listado de camiones:");
                     System.out.println(miEmpresa.listarCamion(cargaMaxima, longitud));
 
                 }
-            }else {
+            } else if (teclado.compareTo("5")==0) {
+
+                System.out.println("Inserte el DNI del cliente que ha hecho la reserva");
+                String dni = sc.nextLine();
+                if(miEmpresa.existeCliente(dni)) {
+                    System.out.println("Inserte la matricula del Vehiculo de la reserva");
+                    String matricula = sc.nextLine();
+                    if (miEmpresa.existeVehiculo(matricula)) {
+
+                        System.out.println("Inicio del alquiler de la reserva");
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+                        String inicioAlquiler = sc.nextLine();
+
+                        Date fechaAlquiler = formato.parse(inicioAlquiler);
+
+                        System.out.println("Cuanto kilometros ha recorrido con el vehiculo:");
+                        int kmsRecorridos = Integer.parseInt(sc.nextLine());
+                        int precioReserva = miEmpresa.obtenPrecioReserva(dni, matricula, fechaAlquiler, kmsRecorridos);
+
+                        System.out.println("El importe del alquiler es " + Integer.toString(precioReserva));
+
+
+
+
+                    } else {
+                        System.out.println("La matricula no existe");
+                    }
+                } else {
+                    System.out.println("El cliente no existe");
+                }
+
+
+
+
+
+        }else {
                 salir = true;
             }
         }while(!salir);
@@ -134,33 +196,46 @@ public class Main {
         System.out.println("Precio por dia:");
         int precioPorDia = Integer.valueOf(sc.nextLine());
 
+
         System.out.println("Elija el tipo de motor: ");
         System.out.println("Introduce el tipo de motor del vehículo");
-        System.out.println("0. ELECTRICO");
-        System.out.println("1. HIBRIDO ENCHUFABLE");
-        System.out.println("2. HIBRIDO");
-        System.out.println("3. GASOLINA");
-        System.out.println("4. DIESEL");
-        int motor = Integer.valueOf(sc.nextLine());
         TipoMotor tipoMotor = null;
+        int motor;
+        boolean cont = true;
+        while (cont == true){
+            System.out.println("0. ELECTRICO");
+            System.out.println("1. HIBRIDO ENCHUFABLE");
+            System.out.println("2. HIBRIDO");
+            System.out.println("3. GASOLINA");
+            System.out.println("4. DIESEL");
+            motor = Integer.valueOf(sc.nextLine());
 
-        if(motor == TipoMotor.ELECTRICO.ordinal()){
-            tipoMotor = TipoMotor.ELECTRICO;
-        } else if(motor == TipoMotor.GASOLINA.ordinal()){
-            tipoMotor = TipoMotor.GASOLINA;
-        } else if(motor == TipoMotor.DIESEL.ordinal()){
-            tipoMotor = TipoMotor.DIESEL;
-        } else if(motor == TipoMotor.HIBRIDO.ordinal()){
-            tipoMotor = TipoMotor.HIBRIDO;
-        } else if(motor == TipoMotor.HIBRIDOENCHUFABLE.ordinal()){
-            tipoMotor = TipoMotor.HIBRIDOENCHUFABLE;
+            if(motor == TipoMotor.ELECTRICO.ordinal()){
+                tipoMotor = TipoMotor.ELECTRICO;
+                cont = false;
+            } else if(motor == TipoMotor.GASOLINA.ordinal()){
+                tipoMotor = TipoMotor.GASOLINA;
+                cont = false;
+            } else if(motor == TipoMotor.DIESEL.ordinal()){
+                tipoMotor = TipoMotor.DIESEL;
+                cont = false;
+            } else if(motor == TipoMotor.HIBRIDO.ordinal()){
+                tipoMotor = TipoMotor.HIBRIDO;
+                cont = false;
+            } else if(motor == TipoMotor.HIBRIDOENCHUFABLE.ordinal()){
+                tipoMotor = TipoMotor.HIBRIDOENCHUFABLE;
+                cont = false;
+            } else {
+                System.out.println("Error, elige un numero tipo válido.");
+            }
+
         }
 
         System.out.println("Elija una tipo de vehículo de los siguientes: COCHE, FURGON, CAMION");
 
         String veh = sc.nextLine();
 
-        if(veh.equals(TipoVehiculo.COCHE.toString())) {
+        if(veh.toUpperCase().equals(TipoVehiculo.COCHE.toString())) {
             System.out.println("Plazas:");
             int plazas = Integer.valueOf(sc.nextLine());
             System.out.println("Puertas:");
@@ -187,7 +262,7 @@ public class Main {
 
             resultado = miEmpresa.addVehiculo(new Coche(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor, TipoVehiculo.COCHE, plazas, puertas, volumenMaletero, tipoCoche));
 
-        }else if(veh.equals(TipoVehiculo.FURGON.toString())){
+        }else if(veh.toUpperCase().equals(TipoVehiculo.FURGON.toString())){
             System.out.println("Carga Máxima:");
             int cargaMaxima = Integer.valueOf(sc.nextLine());
             System.out.println("Plazas:");
@@ -195,7 +270,7 @@ public class Main {
 
             resultado =  miEmpresa.addVehiculo(new Furgon(matricula, modelo, marca, kmsRecorridos, precioPorDia, tipoMotor, TipoVehiculo.FURGON, cargaMaxima, plazas));
 
-        }else if(veh.equals(TipoVehiculo.CAMION.toString())){
+        }else if(veh.toUpperCase().equals(TipoVehiculo.CAMION.toString())){
             System.out.println("Carga Máxima:");
             int cargaMaxima = Integer.valueOf(sc.nextLine());
             System.out.println("Logitud:");

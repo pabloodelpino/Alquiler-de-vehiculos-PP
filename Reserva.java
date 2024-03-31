@@ -1,18 +1,22 @@
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class Reserva {
     private Vehiculo vehiculoAlquilado;
     private Date inicioAlquiler;
-    private String diasAlquilado;
+    private int diasAlquilado;
     private Cliente cliente;
-    private int kmsRecorridos;
+    private int kmsRecorrido;
+    private Date finAlquiler;
 
-    public Reserva(Vehiculo vehiculoAlquilado, Date inicioAlquiler, String diasAlquilado, Cliente cliente, int kmsRecorridos) {
+    public Reserva(Vehiculo vehiculoAlquilado, Date inicioAlquiler, int diasAlquilado, Cliente cliente, Date finAlquiler) {
         this.vehiculoAlquilado = vehiculoAlquilado;
         this.inicioAlquiler = inicioAlquiler;
         this.diasAlquilado = diasAlquilado;
         this.cliente = cliente;
-        this.kmsRecorridos = kmsRecorridos;
+        this.kmsRecorrido = 0;
+        this.finAlquiler = finAlquiler;
     }
 
     public Vehiculo getVehiculoAlquilado() {
@@ -31,11 +35,11 @@ public class Reserva {
         this.inicioAlquiler = inicioAlquiler;
     }
 
-    public String getDiasAlquilado() {
+    public int getDiasAlquilado() {
         return diasAlquilado;
     }
 
-    public void setDiasAlquilado(String diasAlquilado) {
+    public void setDiasAlquilado(int diasAlquilado) {
         this.diasAlquilado = diasAlquilado;
     }
 
@@ -47,11 +51,19 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public int getKmsRecorridos() {
-        return kmsRecorridos;
+    public int getKmsRecorrido() {
+        return kmsRecorrido;
     }
 
-    public void setKmsRecorridos(int kmsRecorridos) {
-        this.kmsRecorridos = kmsRecorridos;
+    public void setKmsRecorrido(int kmsRecorrido) {
+        this.kmsRecorrido = kmsRecorrido;
+    }
+
+    public Date getFinAlquiler() {
+        return finAlquiler;
+    }
+
+    public void setFinAlquiler(Date entregaAlquiler) {
+        this.finAlquiler = entregaAlquiler;
     }
 }

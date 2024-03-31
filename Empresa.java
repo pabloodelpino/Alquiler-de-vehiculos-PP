@@ -26,16 +26,20 @@ public class Empresa {
         return false;
     }
 
+    public boolean existeCliente(String dni) {
+        if (mapaClientes.containsKey(dni)){
+            return true;
+        }
 
+        return false;
+    }
 
     //CRUD VEHICULO
     //Solo nos pide dar de alta
     public boolean addVehiculo(Vehiculo v) {
         boolean exito = false;
         if(v != null) {
-           /* if(miListaVehiculos == null && buscarVehiculo(v.getMatricula()) == null) {
-                return miListaVehiculos.add(v);
-            }*/
+
             if (existeVehiculo(v.getMatricula()) == false){
                 miListaVehiculos.add(v);
                 exito = true;
@@ -43,6 +47,7 @@ public class Empresa {
         }
         return exito;
     }
+
 
 
     public boolean existeVehiculo (String matricula) {
@@ -67,12 +72,11 @@ public class Empresa {
             else{
                 i++;
             }
-
         }
         return i;
     }
 
-    /*FALTA PONER EN EL MENÚ LISTAR LOS COCHES FURGONES Y CAMIONES, TAMBIEN HAY QUE AÑADIR LAS CONDICIONES DEL COCHE, Y TERMINAR FURGON Y CAMION*/
+
     public String listarCoche (int plaza, TipoMotor tipoMotor){
         String lista = "";
         for (int i = 0; i < miListaVehiculos.size(); i++){
@@ -119,5 +123,52 @@ public class Empresa {
         return lista;
     }
 
+    public boolean alquilarVehiculo(String dni, String matricula, Date fechaAlquiler, int diasAlquilado, Date finAlquiler){
+        Cliente cliente = mapaClientes.get(dni);
+
+        int i = obtenVehiculo(matricula);
+        Vehiculo vehiculo = miListaVehiculos.get(i);
+
+        Reserva reserva = new Reserva(vehiculo,fechaAlquiler, diasAlquilado, cliente, finAlquiler);
+
+        miReserva.add(reserva);
+        return true;
+    }
+
+    public int obtenPrecioReserva (String dni, String matricula, Date fechaAlquiler, int kmsRecorridos) {
+        boolean existe = false;
+        int i = 0;
+        int precio = 0;
+        while  (i< miReserva.size() && !existe){
+            if (miReserva.get(i).getCliente().getDni().equals(dni) && miReserva.get(i).getVehiculoAlquilado().getMatricula().equals(matricula)) {
+                if (miReserva.get(i).getInicioAlquiler().equals(fechaAlquiler)){
+
+                    existe = true;
+                    precio = (int) (miReserva.get(i).getDiasAlquilado()* miReserva.get(i).getVehiculoAlquilado().getPrecioPorDia());
+                    double a = (kmsRecorridos / miReserva.get(i).getDiasAlquilado());
+                    if ((kmsRecorridos / miReserva.get(i).getDiasAlquilado()) > 500){
+                        precio = (int) (precio*1.2);
+                    }
+
+                }
+                else {
+                    i++;
+                }
+            }
+            else{
+                i++;
+            }
+        }
+        return precio;
+    }
+
+    /*public int cobrar(int kmsRecorridos, Vehiculo vehiculo, Reserva reserva){
+        int precio = (int) (reserva.getDiasAlquilado()* vehiculo.getPrecioPorDia());
+
+        if ((kmsRecorridos / reserva.getDiasAlquilado()) > 500){
+            precio = (int) (precio*1.2);
+        }
+        return precio;
+    }*/
 
 }
