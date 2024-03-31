@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Empresa {
     private ArrayList<Vehiculo> miListaVehiculos;
@@ -10,9 +7,9 @@ public class Empresa {
 
 
     public Empresa() {
-        miListaVehiculos = new ArrayList<>();
         mapaClientes = new HashMap<>();
         miListaVehiculos = new ArrayList<>();
+        miReserva = new ArrayList<>();
     }
 
 
@@ -75,35 +72,52 @@ public class Empresa {
         return i;
     }
 
-   /* public Vehiculo buscarVehiculo(String matricula) {
-        for(Vehiculo unPaquete: miListaVehiculos) {
-            if(unPaquete.getMatricula().compareTo(localizador)==0) {
-                return unPaquete;
-            }
-        }
-        return null;
-    }*/
-
-
     /*FALTA PONER EN EL MENÚ LISTAR LOS COCHES FURGONES Y CAMIONES, TAMBIEN HAY QUE AÑADIR LAS CONDICIONES DEL COCHE, Y TERMINAR FURGON Y CAMION*/
-    public String listarCoche (){
+    public String listarCoche (int plaza, TipoMotor tipoMotor){
         String lista = "";
-        for (int i = 0; i < miListaVehiculos.size();i++){
+        for (int i = 0; i < miListaVehiculos.size(); i++){
             if(miListaVehiculos.get(i) instanceof Coche){
-                Coche coche = (Coche) miListaVehiculos.get(i);
-                lista = lista + coche.getMatricula() + "\n";
+                if (plaza >= ((Coche) miListaVehiculos.get(i)).getPlazas() && miListaVehiculos.get(i).getTipoMotor() == tipoMotor){
+                    Coche coche = (Coche) miListaVehiculos.get(i);
+                    lista = lista + "Coche" +(i+1)+ ", Matricula: " +coche.getMatricula() + "\n";
+
+                }
+
             }
         }
         return lista;
     }
-    /*
-    public String listarFurgon (){
 
+
+    public String listarFurgon (int cargaMaxima, int plaza){
+        String lista = "";
+        for (int i = 0; i < miListaVehiculos.size(); i++){
+            if(miListaVehiculos.get(i) instanceof Furgon){
+                if (plaza >= ((Furgon) miListaVehiculos.get(i)).getPlaza() && cargaMaxima >= ((Furgon) miListaVehiculos.get(i)).getCargaMaxima()){
+                    Furgon furgon = (Furgon) miListaVehiculos.get(i);
+                    lista = lista + "Furgon" +(i+1)+ ", Matricula: " + furgon.getMatricula() + "\n";
+
+                }
+
+            }
+        }
+        return lista;
     }
 
-    public String listarCamion(){
+    public String listarCamion (int cargaMaxima, int longitud){
+        String lista = "";
+        for (int i = 0; i < miListaVehiculos.size(); i++){
+            if(miListaVehiculos.get(i) instanceof Camion){
+                if ( cargaMaxima >= ((Camion) miListaVehiculos.get(i)).getCargaMaxima() && longitud <= ((Camion) miListaVehiculos.get(i)).getLongitud()){
+                    Camion camion = (Camion) miListaVehiculos.get(i);
+                    lista = lista + "Camión" +(i+1)+ ", Matricula: " +camion.getMatricula() + "\n";
 
+                }
+
+            }
+        }
+        return lista;
     }
-    */
+
 
 }

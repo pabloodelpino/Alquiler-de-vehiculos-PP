@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -43,17 +42,76 @@ public class Main {
             }
             else if(teclado.compareTo("2")==0) {
 
-                if(darAltaCliente(sc, miEmpresa)) {
+                if (darAltaCliente(sc, miEmpresa)) {
                     System.out.println("Cliente añadido");
-                }else {
+                } else {
                     System.out.println("No se ha podido añadir el Cliente");
                 }
 
+            } else if(teclado.compareTo("3")==0) {
+
+
+
             } else if(teclado.compareTo("4")==0) {
 
-                System.out.println("Listado de vehículos:");
-                System.out.println(miEmpresa.listarCoche());
+                System.out.println("a. Coches");
+                System.out.println("b. Furgones");
+                System.out.println("c. Camiones");
+                String menu = sc.nextLine();
+                if (menu.equals("a")){
 
+                    System.out.println("Cuantas plazas minimo quieres en tu coche: ");
+                    int plazas = Integer.valueOf(sc.nextLine());
+
+                    System.out.println("Elija el tipo de motor: ");
+                    System.out.println("0. ELECTRICO");
+                    System.out.println("1. HIBRIDO ENCHUFABLE");
+                    System.out.println("2. HIBRIDO");
+                    System.out.println("3. GASOLINA");
+                    System.out.println("4. DIESEL");
+                    int motor = Integer.valueOf(sc.nextLine());
+                    TipoMotor tipoMotor = null;
+
+                    if(motor == TipoMotor.ELECTRICO.ordinal()){
+                        tipoMotor = TipoMotor.ELECTRICO;
+                    } else if(motor == TipoMotor.GASOLINA.ordinal()){
+                        tipoMotor = TipoMotor.GASOLINA;
+                    } else if(motor == TipoMotor.DIESEL.ordinal()){
+                        tipoMotor = TipoMotor.DIESEL;
+                    } else if(motor == TipoMotor.HIBRIDO.ordinal()){
+                        tipoMotor = TipoMotor.HIBRIDO;
+                    } else if(motor == TipoMotor.HIBRIDOENCHUFABLE.ordinal()){
+                        tipoMotor = TipoMotor.HIBRIDOENCHUFABLE;
+                    }
+
+                    miEmpresa.listarCoche(plazas, tipoMotor);
+                    System.out.println("Listado de coches:");
+                    System.out.println(miEmpresa.listarCoche(plazas,tipoMotor));
+
+
+                } else if (menu.equals("b")) {
+
+                    System.out.println("Carga minima para el furgón:");
+                    int cargaMaxima = Integer.valueOf(sc.nextLine());
+                    System.out.println("Cuantas plazas minimo quieres en tu coche: ");
+                    int plaza = Integer.valueOf(sc.nextLine());
+
+                    miEmpresa.listarFurgon(cargaMaxima, plaza);
+                    System.out.println("Listado de furgones:");
+                    System.out.println(miEmpresa.listarFurgon(cargaMaxima, plaza));
+
+                } else if (menu.equals("c")) {
+
+                    System.out.println("Carga minima para el camión:");
+                    int cargaMaxima = Integer.valueOf(sc.nextLine());
+                    System.out.println("Logitud máxima para el camión: ");
+                    int longitud = Integer.valueOf(sc.nextLine());
+
+                    miEmpresa.listarCamion(cargaMaxima,longitud);
+                    System.out.println("Listado de camiones:");
+                    System.out.println(miEmpresa.listarCamion(cargaMaxima, longitud));
+
+                }
             }else {
                 salir = true;
             }

@@ -2,7 +2,7 @@ public abstract class Vehiculo {
 
     //public static enum TipoMotor {ELECTRICO, HIBRIDO, GASOLINA, DIESEL};
 
-    private String matricula;
+   private String matricula;
    private String modelo;
    private String marca;
    private int kmsRecorridos;
