@@ -44,5 +44,17 @@ public class Coche extends Vehiculo{
         this.tipoCoche = tipoCoche;
     }
 
+    @Override
+    public String toString() {
+        return this.getTipoVehiculo()+ "\nMatricula: " +
+                this.getMatricula() + "\nMarca: " +
+                this.getMarca()+ "\nMotor: " +
+                this.getTipoMotor()+ "\nPrecio por día: " +
+                this.getPrecioPorDia() + "\nPuertas: " +
+                this.getPuertas() + "\nPlazas: " +
+                this.getPlazas()+
+                "\n\n";
+    }
+
 
 }

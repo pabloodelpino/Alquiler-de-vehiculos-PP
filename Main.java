@@ -112,10 +112,11 @@ public class Main {
                         tipoMotor = TipoMotor.HIBRIDOENCHUFABLE;
                     }
 
-                    miEmpresa.listarCoche(plazas, tipoMotor);
+                    Coche[] arrayCoches = miEmpresa.listarCoche(plazas, tipoMotor);
                     System.out.println("Listado de coches:");
-                    System.out.println(miEmpresa.listarCoche(plazas, tipoMotor));
-
+                    for(int i=0;i<arrayCoches.length;i++) {
+                        System.out.println(arrayCoches[i].toString());
+                    }
                 } else if (menu.equals("b")) {
 
                     System.out.println("Carga minima para el furgón:");
@@ -123,9 +124,15 @@ public class Main {
                     System.out.println("Cuantas plazas minimo quieres en tu coche: ");
                     int plaza = Integer.valueOf(sc.nextLine());
 
-                    miEmpresa.listarFurgon(cargaMaxima, plaza);
+                    /*miEmpresa.listarFurgon(cargaMaxima, plaza);
                     System.out.println("Listado de furgones:");
-                    System.out.println(miEmpresa.listarFurgon(cargaMaxima, plaza));
+                    System.out.println(miEmpresa.listarFurgon(cargaMaxima, plaza));*/
+
+                    Furgon[] arrayFurgon = miEmpresa.listarFurgon(cargaMaxima, plaza);
+                    System.out.println("Listado de furgones:");
+                    for(int i=0;i<arrayFurgon.length;i++) {
+                        System.out.println(arrayFurgon[i].toString());
+                    }
 
                 } else if (menu.equals("c")) {
 
@@ -134,9 +141,15 @@ public class Main {
                     System.out.println("Logitud máxima para el camión: ");
                     int longitud = Integer.valueOf(sc.nextLine());
 
-                    miEmpresa.listarCamion(cargaMaxima, longitud);
+                    /*miEmpresa.listarCamion(cargaMaxima, longitud);
                     System.out.println("Listado de camiones:");
-                    System.out.println(miEmpresa.listarCamion(cargaMaxima, longitud));
+                    System.out.println(miEmpresa.listarCamion(cargaMaxima, longitud));*/
+
+                    Camion[] arrayCamion = miEmpresa.listarCamion(cargaMaxima, longitud);
+                    System.out.println("Listado de camiones:");
+                    for(int i=0;i<arrayCamion.length;i++) {
+                        System.out.println(arrayCamion[i].toString());
+                    }
 
                 }
             } else if (teclado.compareTo("5")==0) {

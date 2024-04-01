@@ -24,4 +24,16 @@ public class Camion extends Vehiculo{
     public void setLongitud(int longitud) {
         this.longitud = longitud;
     }
+
+    @Override
+    public String toString() {
+        return this.getTipoVehiculo()+ "\nMatricula: " +
+                this.getMatricula() + "\nMarca: " +
+                this.getMarca()+ "\nMotor: " +
+                this.getTipoMotor()+ "\nPrecio por día: " +
+                this.getPrecioPorDia() + "\nCarga: " +
+                this.getCargaMaxima()+ "\nLongitud: " +
+                this.getLongitud()+
+                "\n\n";
+    }
 }

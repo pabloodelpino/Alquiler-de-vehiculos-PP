@@ -18,7 +18,7 @@ public abstract class Vehiculo {
        this.kmsRecorridos = kmsRecorridos;
        this.precioPorDia = precioPorDia;
        this.tipoMotor = tipoMotor;
-
+       this.tipoVehiculo = tipoVehiculo;
    }
    public String getMatricula() {
        return matricula;
@@ -58,5 +58,21 @@ public abstract class Vehiculo {
 
     public TipoMotor getTipoMotor() {
         return tipoMotor;
+    }
+
+    public void setPrecioPorDia(double precioPorDia) {
+        this.precioPorDia = precioPorDia;
+    }
+
+    public void setTipoMotor(TipoMotor tipoMotor) {
+        this.tipoMotor = tipoMotor;
+    }
+
+    public TipoVehiculo getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
 }

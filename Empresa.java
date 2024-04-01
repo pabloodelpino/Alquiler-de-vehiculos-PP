@@ -77,42 +77,72 @@ public class Empresa {
     }
 
 
-    public String listarCoche (int plaza, TipoMotor tipoMotor){
-        String lista = "";
+    public Coche[] listarCoche (int plaza, TipoMotor tipoMotor){
+        ArrayList<Coche> lista = new ArrayList<>();
         for (int i = 0; i < miListaVehiculos.size(); i++){
             if(miListaVehiculos.get(i) instanceof Coche){
-                if (plaza >= ((Coche) miListaVehiculos.get(i)).getPlazas() && miListaVehiculos.get(i).getTipoMotor() == tipoMotor){
-                    Coche coche = (Coche) miListaVehiculos.get(i);
-                    lista = lista + "Coche" +(i+1)+ ", Matricula: " +coche.getMatricula() + "\n";
+                Coche c = (Coche)miListaVehiculos.get(i);
+                if (plaza >= c.getPlazas() && c.getTipoMotor() == tipoMotor){
+
+                    lista.add(c);// = lista + "Coche" +(i+1)+ ", Matricula: " +coche.getMatricula() + "\n";
 
                 }
 
             }
         }
-        return lista;
+        return lista.toArray(new Coche[0]);
     }
 
+    public Furgon[] listarFurgon (int cargaMaxima, int plaza){
+        ArrayList<Furgon> lista = new ArrayList<>();
+        for (int i = 0; i < miListaVehiculos.size(); i++){
+            if(miListaVehiculos.get(i) instanceof Furgon){
+                Furgon f = (Furgon)miListaVehiculos.get(i);
+                if (plaza >= f.getPlaza() && cargaMaxima >= f.getCargaMaxima()){
+                    lista.add(f);//= lista + miListaVehiculos.get(i).getTipoVehiculo() + " " +(i+1)+ ", Matricula: " + furgon.getMatricula() + "\n";
 
-    public String listarFurgon (int cargaMaxima, int plaza){
+                }
+
+            }
+        }
+        return lista.toArray(new Furgon[0]);
+    }
+
+    /*public String listarFurgon (int cargaMaxima, int plaza){
         String lista = "";
         for (int i = 0; i < miListaVehiculos.size(); i++){
             if(miListaVehiculos.get(i) instanceof Furgon){
                 if (plaza >= ((Furgon) miListaVehiculos.get(i)).getPlaza() && cargaMaxima >= ((Furgon) miListaVehiculos.get(i)).getCargaMaxima()){
                     Furgon furgon = (Furgon) miListaVehiculos.get(i);
-                    lista = lista + "Furgon" +(i+1)+ ", Matricula: " + furgon.getMatricula() + "\n";
+                    lista = lista + miListaVehiculos.get(i).getTipoVehiculo() + " " +(i+1)+ ", Matricula: " + furgon.getMatricula() + "\n";
 
                 }
 
             }
         }
         return lista;
+    }*/
+
+    public Camion[] listarCamion (int cargaMaxima, int longitud){
+        ArrayList<Camion> lista = new ArrayList<>();
+        for (int i = 0; i < miListaVehiculos.size(); i++){
+            if(miListaVehiculos.get(i) instanceof Camion){
+                Camion c = (Camion)miListaVehiculos.get(i);
+                if (cargaMaxima >= c.getCargaMaxima() && longitud <= c.getLongitud()){
+                    lista.add(c);
+                }
+
+            }
+        }
+        return lista.toArray(new Camion[0]);
     }
 
-    public String listarCamion (int cargaMaxima, int longitud){
+
+    /*public String listarCamion (int cargaMaxima, int longitud){
         String lista = "";
         for (int i = 0; i < miListaVehiculos.size(); i++){
             if(miListaVehiculos.get(i) instanceof Camion){
-                if ( cargaMaxima >= ((Camion) miListaVehiculos.get(i)).getCargaMaxima() && longitud <= ((Camion) miListaVehiculos.get(i)).getLongitud()){
+                if (cargaMaxima >= ((Camion) miListaVehiculos.get(i)).getCargaMaxima() && longitud <= ((Camion) miListaVehiculos.get(i)).getLongitud()){
                     Camion camion = (Camion) miListaVehiculos.get(i);
                     lista = lista + "Camión" +(i+1)+ ", Matricula: " +camion.getMatricula() + "\n";
 
@@ -121,7 +151,7 @@ public class Empresa {
             }
         }
         return lista;
-    }
+    }*/
 
     public boolean alquilarVehiculo(String dni, String matricula, Date fechaAlquiler, int diasAlquilado, Date finAlquiler){
         Cliente cliente = mapaClientes.get(dni);
@@ -161,6 +191,13 @@ public class Empresa {
         }
         return precio;
     }
+
+
+
+
+
+
+
 
     /*public int cobrar(int kmsRecorridos, Vehiculo vehiculo, Reserva reserva){
         int precio = (int) (reserva.getDiasAlquilado()* vehiculo.getPrecioPorDia());

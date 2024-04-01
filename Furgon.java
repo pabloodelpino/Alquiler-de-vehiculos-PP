@@ -24,4 +24,16 @@ public class Furgon extends Vehiculo{
     public void setPlaza(int plaza) {
         this.plaza = plaza;
     }
+
+    @Override
+    public String toString() {
+        return this.getTipoVehiculo()+ "\nMatricula: " +
+                this.getMatricula() + "\nMarca: " +
+                this.getMarca()+ "\nMotor: " +
+                this.getTipoMotor()+ "\nPrecio por día: " +
+                this.getPrecioPorDia() + "\nPlazas: " +
+                this.getPlaza()+ "\nCarga: " +
+                this.getCargaMaxima()+
+                "\n\n";
+    }
 }
