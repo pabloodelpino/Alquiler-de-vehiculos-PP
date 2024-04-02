@@ -165,7 +165,7 @@ public class Empresa {
         return true;
     }
 
-    public int obtenPrecioReserva (String dni, String matricula, Date fechaAlquiler, int kmsRecorridos) {
+    public int obtenPrecioReserva (String dni, String matricula, Date fechaAlquiler, int kmsRecorridos, int diasUsado) {
         boolean existe = false;
         int i = 0;
         int precio = 0;
@@ -178,6 +178,14 @@ public class Empresa {
                     double a = (kmsRecorridos / miReserva.get(i).getDiasAlquilado());
                     if ((kmsRecorridos / miReserva.get(i).getDiasAlquilado()) > 500){
                         precio = (int) (precio*1.2);
+
+
+                    }
+
+                    if ( diasUsado > miReserva.get(i).getDiasAlquilado()){
+                        int diasSobrepasados;
+                        diasSobrepasados = diasUsado - (miReserva.get(i).getDiasAlquilado());
+                        precio += diasSobrepasados * 1.50;
                     }
 
                 }

@@ -169,7 +169,11 @@ public class Main {
 
                         System.out.println("Cuanto kilometros ha recorrido con el vehiculo:");
                         int kmsRecorridos = Integer.parseInt(sc.nextLine());
-                        int precioReserva = miEmpresa.obtenPrecioReserva(dni, matricula, fechaAlquiler, kmsRecorridos);
+
+                        System.out.println("Cuantos días has usado el vehículo: ");
+                        int diasUsado = Integer.parseInt(sc.nextLine());
+
+                        int precioReserva = miEmpresa.obtenPrecioReserva(dni, matricula, fechaAlquiler, kmsRecorridos, diasUsado);
 
                         System.out.println("El importe del alquiler es " + Integer.toString(precioReserva));
 
